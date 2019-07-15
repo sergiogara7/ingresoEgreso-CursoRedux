@@ -10,4 +10,11 @@ export class User {
         this.email = email;
         this.uid = uid;
     }
+
+}
+
+interface DataObj {
+    uid: string,
+    email: string,
+    nombre: string
 }
