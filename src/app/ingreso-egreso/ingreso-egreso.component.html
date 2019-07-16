@@ -7,19 +7,21 @@
               Especifique el monto y el tipo
             </p>
 
-            <form>
+            <form [formGroup]="forma" (ngSubmit)="crearIngresoEgreso()">
               
               <div class="form-group">
                 <label>Descripción</label>
-                <input type="text" 
-                       class="form-control" 
-                       placeholder="Descripción"
-                       name="descripcion">
+                <input type="text"
+                      formControlName="descripcion"
+                      class="form-control" 
+                      placeholder="Descripción"
+                      name="descripcion">
               </div>
 
               <div class="form-group">
                   <label>Monto</label>
-                  <input type="number" 
+                  <input type="number"
+                        formControlName="monto"
                          class="form-control" 
                          placeholder="Monto"
                          name="monto">
@@ -31,12 +33,11 @@
               <div class="form-group">
                   <label>Tipo</label>
                   <br>
-                  <button type="button" class="btn btn-primary btn-block">Ingreso</button>
-                  <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                  <button (click)="tipo = 'egreso'" *ngIf="tipo === 'ingreso'" type="button" class="btn btn-primary btn-block">Ingreso</button>
+                  <button (click)="tipo = 'ingreso'" *ngIf="tipo === 'egreso'" type="button" class="btn btn-warning btn-block">Egreso</button>
               </div>
-
               <hr>
-              <button type="button" class="btn btn-success mr-2">
+              <button [disabled]="forma.invalid" type="submit" class="btn btn-success mr-2">
                 <i class="fa fa-save"></i>
                 Agregar
               </button>
